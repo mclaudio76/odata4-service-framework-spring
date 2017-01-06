@@ -76,7 +76,7 @@ public class ApplicationConfiguration {
     public EntityManagerFactory entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setDataSource(getDatasource());
-        lef.setPackagesToScan("odata4fx.demo.entities");
+        lef.setPackagesToScan("odata4fx.demo");
         lef.setPersistenceUnitName("odata-spring");
         lef.setJpaVendorAdapter(getJPAVendorAdapter());
         
