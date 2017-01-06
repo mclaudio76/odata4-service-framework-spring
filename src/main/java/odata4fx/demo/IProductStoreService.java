@@ -1,4 +1,4 @@
-package odata4fx.demo.service;
+package odata4fx.demo;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import odata4fx.core.annotations.ODataNavigation;
 import odata4fx.core.annotations.ODataReadEntity;
 import odata4fx.core.annotations.ODataReadEntityCollection;
 import odata4fx.core.annotations.ODataUpdateEntity;
-import odata4fx.demo.entities.Category;
-import odata4fx.demo.entities.Product;
+import odata4fx.demo.Category;
+import odata4fx.demo.Product;
 
 @ODataController
 public interface IProductStoreService {

@@ -1,4 +1,4 @@
-package odata4fx.demo.service;
+package odata4fx.demo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import odata4fx.core.ODataEntityHelper;
 import odata4fx.core.ODataParameter;
-import odata4fx.demo.entities.Category;
-import odata4fx.demo.entities.Product;
+import odata4fx.demo.Category;
+import odata4fx.demo.Product;
 
 	
 

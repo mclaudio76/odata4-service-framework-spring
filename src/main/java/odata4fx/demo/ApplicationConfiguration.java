@@ -24,10 +24,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import odata4fx.core.Endpoint;
 import odata4fx.core.ODataControllerFactory;
 import odata4fx.core.ODataEntityHelper;
-import odata4fx.demo.entities.Category;
-import odata4fx.demo.entities.Product;
-import odata4fx.demo.service.IProductStoreService;
-import odata4fx.demo.service.ProductStoreService;
+import odata4fx.demo.Category;
+import odata4fx.demo.Product;
+import odata4fx.demo.IProductStoreService;
+import odata4fx.demo.ProductStoreService;
 	
 
 @Configuration
