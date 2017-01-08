@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import odata4fx.core.ODataEntityHelper;
 import odata4fx.core.ODataParameter;
+import odata4fx.core.annotations.ODataCreateResourceLink;
 import odata4fx.demo.Category;
 import odata4fx.demo.Product;
 
@@ -122,7 +123,7 @@ public class ProductStoreService implements IProductStoreService  {
 			sql.append(orderClause.getOrderByProperty()).append(" ").append(orderClause.isDescending()?" DESC ": " ASC");
 		}
 		
-		Query query = entityManager.createQuery(sql.toString(), Product.class);
+		Query query = entityManager.createQuery(sql.toString(), Category.class);
 		if(skip != null) {
 			query.setFirstResult(skip.getSkipValue());
 		}
@@ -182,19 +183,26 @@ public class ProductStoreService implements IProductStoreService  {
 
 	/// Intra relationship
 	
+	@ODataCreateResourceLink(entity=Product.class, relatedEntity=Category.class)
+	public void setCategory(Product p, Category c) {
+		p = entityManager.find(Product.class, p.ID);
+		c = entityManager.find(Category.class, c.categoryID);
+		p.category = c;
+		entityManager.persist(p);
+		entityManager.flush();
+	}
+	
 	@Override
-	public Category getAssociatedCategory(Product item, List<ODataParameter> params) {
-		return item.category;
+	public Category getAssociatedCategory(Product p, List<ODataParameter> params) {
+		p = entityManager.find(Product.class, p.ID);
+		return p.category == null ? new Category() : p.category;
 	}
 	
 	@Override
 	public List<Product> getAssociatedProducts(Category item, List<ODataParameter> params) {
 		List<Product> result = new ArrayList<Product>();
-		/*for(Product p : item.products) {
-			if(helper.entityMatchesKeys(p, params)) {
-				result.add(p);
-			}
-		}*/
+		item = entityManager.find(Category.class, item.categoryID);
+		result.addAll(item.products);
 		return result;
 	}
 	

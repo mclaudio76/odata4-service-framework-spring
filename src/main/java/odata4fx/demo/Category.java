@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import org.apache.olingo.commons.api.edm.EdmPrimitiveTypeKind;
 import org.apache.olingo.commons.api.edm.constants.EdmTypeKind;
+
 
 import odata4fx.core.annotations.ODataEntity;
 import odata4fx.core.annotations.ODataField;
@@ -37,7 +39,7 @@ public class Category {
 	@ODataField(ODataTypeKind=EdmTypeKind.PRIMITIVE, ODataType=EdmPrimitiveTypeKind.String)
 	public String  shortName;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	@ODataNavigationProperty(entityType=Product.class, name="Products", path="Products", target="Products", nullable=false, partner="Category")
 	public List<Product> products = new ArrayList<Product>();
 
